@@ -26,7 +26,7 @@ export function SearchBar({ ipTarget }: SearchBarProps) {
 	});
 	const router = useRouter();
 	const submitHandler: () => void = handleSubmit(({ ip }) =>
-		router.push(`/${ip}`),
+		router.replace(`/${ip}`),
 	);
 
 	return (
@@ -34,12 +34,12 @@ export function SearchBar({ ipTarget }: SearchBarProps) {
 			<form
 				onSubmit={submitHandler}
 				className={clsx(
-					"flex rounded-md overflow-hidden w-64 sm:w-96 border-2",
+					"flex rounded-lg overflow-hidden w-full sm:w-96 border-2 shadow-xl",
 					"ip" in errors ? "border-red-700" : "border-transparent",
 				)}
 			>
 				<input
-					className="basis-11/12 text-sm sm:text-base px-2 py-1 sm:px-4 sm:py-3 text-zinc-700 focus:outline-none"
+					className="basis-11/12 text-base py-3 px-4 text-zinc-700 focus:outline-none"
 					type="text"
 					placeholder="Your Ip"
 					{...register("ip")}
@@ -52,7 +52,7 @@ export function SearchBar({ ipTarget }: SearchBarProps) {
 				</button>
 			</form>
 			{"ip" in errors && (
-				<span className="absolute top-full block translate-y-2 text-red-400">
+				<span className="absolute top-1/4 block translate-y-6 sm:translate-y-12 md:translate-y-16 text-red-400">
 					{errors.ip?.message}
 				</span>
 			)}
